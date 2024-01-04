@@ -13,9 +13,11 @@ import {
   Dimensions,
   useWindowDimensions,
 } from "react-native";
-import {} from "react-native";
+import { useFonts } from "expo-font";
+import * as Font from "expo-font";
 function FirstScreen() {
   const { height, width, scale, fontScale } = useWindowDimensions();
+
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const windowWidth = width;
@@ -34,6 +36,16 @@ function FirstScreen() {
         }}
       >
         <View style={styles.innerContainer}>
+          <Image
+            style={styles.backgroundImage}
+            source={require("../../assets/Cuffs.png")}
+            resizeMode="contain"
+          />
+          <View>
+            <Text style={[styles.appName, { fontSize: 45, fontWeight: "700" }]}>
+              PAREDAAR
+            </Text>
+          </View>
           <View style={styles.Imagecontainer}>
             <Image
               style={{ width: windowWidth, height: 450 * ratio }}
@@ -41,52 +53,50 @@ function FirstScreen() {
               resizeMode="contain"
               transition={1000}
             />
-            <View
+          </View>
+          <View>
+            <Text
               style={{
-                alignItems: "center",
+                fontSize: 34,
+                fontWeight: "500",
+                textAlign: "center",
+                color: "#303030",
               }}
             >
-              <Text style={{ fontSize: 35, fontWeight: "700" }}>PAREDAAR</Text>
-            </View>
+              Paredaar hai Saath
+            </Text>
+            <Text
+              style={{
+                fontSize: 34,
+                fontWeight: "500",
+                textAlign: "center",
+                color: "#303030",
+              }}
+            >
+              Tho darne ki kya baath
+            </Text>
           </View>
-        </View>
-
-        <View
-          style={{
-            flex: 3,
-            alignSelf: "stretch",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{ fontSize: 34, fontWeight: "500", textAlign: "center" }}
+          <View
+            style={{
+              gap: 5,
+              justifyContent: "center",
+            }}
           >
-            Suraksha ka Saathi
-          </Text>
-          <Text
-            style={{ fontSize: 34, fontWeight: "500", textAlign: "center" }}
-          >
-            Ek Chhuan Mein
-          </Text>
-        </View>
-        <View
-          style={{
-            gap: 5,
-            justifyContent: "center",
-          }}
-        >
-          <Pressable
-            style={styles.buttonLogin}
-            onPress={() => router.push("/login/")}
-          >
-            <Text style={[styles.buttonText, { color: "#030303" }]}>LOGIN</Text>
-          </Pressable>
-          <Pressable
-            style={styles.buttonSignUp}
-            onPress={() => router.push("/signup/")}
-          >
-            <Text style={styles.buttonText}>SIGN UP</Text>
-          </Pressable>
+            <Pressable
+              style={styles.buttonLogin}
+              onPress={() => router.push("/login/")}
+            >
+              <Text style={[styles.buttonText]}>LOGIN</Text>
+            </Pressable>
+            <Pressable
+              style={styles.buttonSignUp}
+              onPress={() => router.push("/signup/")}
+            >
+              <Text style={[styles.buttonText, { color: "white" }]}>
+                SIGN UP
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -101,10 +111,19 @@ const styles = StyleSheet.create({
   innerContainer: {
     flex: 1,
     flexDirection: "column",
+    justifyContent: "space-evenly",
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: -100,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: -1,
   },
   Imagecontainer: {
     alignItems: "center",
-    flex: 2,
+    // flex: 3,
   },
   text: {
     color: "#030303",
@@ -142,9 +161,7 @@ const styles = StyleSheet.create({
     border: "0",
     boxSizing: "border-box",
     borderRadius: 24,
-    borderWidth: 4,
-    borderColor: "#030303",
-    color: "#030303",
+    backgroundColor: "#1253d5",
     outline: "none",
     justifyContent: "center",
     alignContent: "center",
@@ -155,7 +172,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     backgroundColor: "#37444f",
     borderColor: "#030303",
-    color: "#ffffff",
     outline: "none",
     justifyContent: "center",
     alignContent: "center",

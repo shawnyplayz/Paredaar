@@ -6,107 +6,88 @@ import {
   Text,
   TextInput,
   View,
-  Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
-// import { Image } from "expo-image";
-import { Asset } from "expo-asset";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+
 export default function SignUp() {
   const [userName, setUserName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const onChangeText = (e) => {};
+
+  const onChangeText = (text) => {
+    // Update state based on the input field
+  };
+
   return (
-    <View
-      style={{
-        backgroundColor: "#ffff",
-        flex: 1,
-        flexDirection: "column",
-        gap: 20,
-      }}
-    >
-      {/* <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/Pahredaar.png")}
-          contentFit="contain"
-          transition={1000}
-        />
-        <View
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text style={styles.appName}>PAREDAAR</Text>
-        </View>
-      </View> */}
-      <View style={{ display: "flex" }}>
-        <View style={styles.creds}>
-          <SafeAreaView style={styles.innerFields}>
-            <Text style={styles.label}>User Name</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(e) => onChangeText(e)}
-              value={userName}
-              placeholder="User Name"
-              keyboardType="ascii-capable"
-            />
-            <Text style={styles.label}>Email</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(e) => onChangeText(e)}
-              value={email}
-              placeholder="Email"
-              keyboardType="email-address"
-            />
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(e) => onChangeText(e)}
-              value={password}
-              placeholder="Password"
-              keyboardType="visible-password"
-            />
-            <Text style={styles.label}>Confirm Password</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(e) => onChangeText(e)}
-              value={confirmPassword}
-              placeholder="Password"
-              keyboardType="visible-password"
-            />
+    <LinearGradient colors={["#ffce9f", "#ff849c"]} style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={styles.creds}>
+            <SafeAreaView style={styles.innerFields}>
+              <Text style={styles.label}>User Name</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => onChangeText(text)}
+                value={userName}
+                placeholder="User Name"
+                keyboardType="ascii-capable"
+              />
+              <Text style={styles.label}>Email</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => onChangeText(text)}
+                value={email}
+                placeholder="Email"
+                keyboardType="email-address"
+              />
+              <Text style={styles.label}>Password</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => onChangeText(text)}
+                value={password}
+                placeholder="Password"
+                secureTextEntry
+              />
+              <Text style={styles.label}>Confirm Password</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => onChangeText(text)}
+                value={confirmPassword}
+                placeholder="Confirm Password"
+                secureTextEntry
+              />
+            </SafeAreaView>
+          </View>
+          <View style={styles.buttonContainer}>
             <Pressable
               onPress={() => router.push("/sos")}
               style={styles.button}
             >
-              <Text style={styles.buttonText}>Sign Up</Text>
+              <Text style={styles.buttonText}>SIGN UP</Text>
             </Pressable>
-          </SafeAreaView>
-        </View>
-      </View>
-    </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </LinearGradient>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-  },
-  image: {},
-  appName: {
-    color: "#030303",
-    fontSize: 38,
-    fontWeight: "600",
-    lineHeight: 42,
-    textAlign: "center",
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "transparent",
   },
   creds: {
-    display: "flex",
+    flex: 1,
     padding: 20,
   },
   label: {
@@ -115,31 +96,29 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   innerFields: {
-    gap: 12,
+    flex: 1,
+    gap: 10,
+    paddingBottom: "2%",
+    // backgroundColor: "plum",
   },
   input: {
-    height: "10%",
     borderWidth: 0.5,
-    borderCurve: "circular",
     borderRadius: 10,
     padding: 10,
     color: "black",
-    borderRadius: 24,
     backgroundColor: "#eeeeee",
     fontSize: 14,
     lineHeight: 19,
   },
+  buttonContainer: {
+    flex: 2,
+    padding: 20,
+    justifyContent: "flex-end",
+  },
   button: {
     padding: 20,
-    marginTop: 20,
-    border: "0",
-    boxSizing: "border-box",
     borderRadius: 24,
-    backgroundColor: "#030303",
-    color: "#ffffff",
-    lineHeight: 21,
-    outline: "none",
-    display: "flex",
+    backgroundColor: "#1253d5",
     justifyContent: "center",
     alignContent: "center",
   },

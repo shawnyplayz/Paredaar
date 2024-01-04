@@ -1,4 +1,6 @@
 import { Stack } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaView } from "react-native";
 
 const RootLayout = () => {
   return (

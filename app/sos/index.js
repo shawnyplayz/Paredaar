@@ -7,7 +7,9 @@ import {
   Animated,
   Vibration,
   Platform,
+  ScrollView,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 import React, { Component } from "react";
 import { router } from "expo-router";
@@ -74,81 +76,80 @@ class SOS extends Component {
   };
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            gap: 40,
-            marginVertical: 50,
-          }}
-        >
-          <View>
-            <Text style={styles.dangerText}>
-              Press this button in case of Emergency
-            </Text>
-          </View>
-          <View>
-            {this.state.disableSOS ? (
-              <Pressable
-                onPress={this.stopCountdown}
-                style={({ pressed }) => [
-                  styles.sos,
-                  {
-                    backgroundColor: "grey",
-                  },
-                ]}
-              >
-                <Text style={styles.sosCancel}>Tap to Cancel</Text>
-              </Pressable>
-            ) : (
-              <Pressable
-                onPress={this.startCountdown}
-                style={({ pressed }) => [
-                  styles.sos,
-                  {
-                    backgroundColor: pressed ? "grey" : "red",
-                  },
-                ]}
-              >
-                <Text style={styles.sosText}>SOS</Text>
-              </Pressable>
-            )}
-          </View>
-          {this.state.countDown !== 10 ? (
-            <View>
-              <Text style={styles.sosCountdown}>
-                Sending SOS in {this.state.countDown}
-              </Text>
-            </View>
-          ) : (
-            ""
-          )}
-          <View style={styles.buttonContainer}>
-            <Pressable
-              style={styles.button}
-              disabled={this.state.disableOtherButtons}
+      <LinearGradient colors={["#ffce9f", "#ff849c"]} style={{ flex: 1 }}>
+        <ScrollView style={{ backgroundColor: "transparent" }}>
+          <View style={{ flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                gap: 40,
+                marginVertical: 50,
+              }}
             >
-              <Text style={styles.groupButtons}>Create Group</Text>
-            </Pressable>
-            <Pressable
-              style={styles.button}
-              onPress={() => router.push("/joinGroup/")}
-              disabled={this.state.disableOtherButtons}
-            >
-              <Text style={styles.groupButtons}>Join Group</Text>
-            </Pressable>
-          </View>
-
-          <View style={styles.groupCollection}>
-            {this.state.groups?.map((el, index) => (
-              <View key={index}>
-                <Text style={styles.groups}>{el}</Text>
+              <View>
+                <Text style={styles.dangerText}>
+                  Press this button in case of Emergency
+                </Text>
               </View>
-            ))}
+              <View>
+                {this.state.disableSOS ? (
+                  <Pressable
+                    onPress={this.stopCountdown}
+                    style={({ pressed }) => [
+                      styles.sos,
+                      {
+                        backgroundColor: "grey",
+                      },
+                    ]}
+                  >
+                    <Text style={styles.sosCancel}>Tap to Cancel</Text>
+                  </Pressable>
+                ) : (
+                  <Pressable
+                    onPress={this.startCountdown}
+                    style={({ pressed }) => [
+                      styles.sos,
+                      {
+                        backgroundColor: pressed ? "grey" : "red",
+                      },
+                    ]}
+                  >
+                    <Text style={styles.sosText}>SOS</Text>
+                  </Pressable>
+                )}
+              </View>
+              <View>
+                <Text style={styles.sosCountdown}>
+                  {this.state.countDown !== 10
+                    ? `Sending SOS in ${this.state.countDown}`
+                    : ""}
+                </Text>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  style={styles.buttonCreateGrp}
+                  disabled={this.state.disableOtherButtons}
+                >
+                  <Text style={styles.groupButtons}>Create Group</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.buttonJoingrp}
+                  onPress={() => router.push("/joinGroup/")}
+                  disabled={this.state.disableOtherButtons}
+                >
+                  <Text style={[styles.groupButtons, { color: "#030303" }]}>
+                    Join Group
+                  </Text>
+                </Pressable>
+              </View>
+              <View>
+                <Text>SOS Message would be sent to the following groups</Text>
+              </View>
+            </View>
           </View>
-        </View>
-      </View>
+        </ScrollView>
+      </LinearGradient>
     );
   }
 }
@@ -185,16 +186,22 @@ const styles = StyleSheet.create({
   groupCollection: {
     marginVertical: 10,
   },
-  button: {
+  buttonCreateGrp: {
     padding: 20,
     border: "0",
     boxSizing: "border-box",
-    borderRadius: 24,
-    backgroundColor: "#030303",
-    color: "#ffffff",
-    lineHeight: 21,
+    borderRadius: 45,
+    backgroundColor: "#1253d5",
     outline: "none",
-    // flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  buttonJoingrp: {
+    padding: 20,
+    borderWidth: 6,
+    borderRadius: 45,
+    borderColor: "#1253d5",
+    outline: "none",
     justifyContent: "center",
     alignContent: "center",
   },
