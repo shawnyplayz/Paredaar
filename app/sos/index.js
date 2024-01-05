@@ -138,7 +138,7 @@ class SOS extends Component {
                   onPress={() => router.push("/joinGroup/")}
                   disabled={this.state.disableOtherButtons}
                 >
-                  <Text style={[styles.groupButtons, { color: "#030303" }]}>
+                  <Text style={[styles.groupButtons, { color: "white" }]}>
                     Join Group
                   </Text>
                 </Pressable>
@@ -188,7 +188,6 @@ const styles = StyleSheet.create({
   },
   buttonCreateGrp: {
     padding: 20,
-    border: "0",
     boxSizing: "border-box",
     borderRadius: 45,
     backgroundColor: "#1253d5",
@@ -198,9 +197,10 @@ const styles = StyleSheet.create({
   },
   buttonJoingrp: {
     padding: 20,
-    borderWidth: 6,
+    boxSizing: "border-box",
     borderRadius: 45,
-    borderColor: "#1253d5",
+    backgroundColor: "#37444f",
+    borderColor: "#030303",
     outline: "none",
     justifyContent: "center",
     alignContent: "center",

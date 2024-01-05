@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
@@ -5,25 +6,27 @@ import { TextInput } from "react-native-gesture-handler";
 function JoinGroup() {
   const [groupCode, setGroupCode] = useState(null);
   return (
-    <View style={styles.outerContainer}>
-      <View>
-        <Text style={styles.label}>Enter the Group Code below</Text>
+    <LinearGradient colors={["#ffce9f", "#ff849c"]} style={{ flex: 1 }}>
+      <View style={styles.outerContainer}>
+        <View>
+          <Text style={styles.label}>Enter the Group Code below</Text>
+        </View>
+        <View>
+          <TextInput
+            placeholder="Group Code"
+            onChangeText={(e) => setGroupCode(e)}
+            value={groupCode}
+            style={styles.input}
+            maxLength={6}
+          />
+        </View>
+        <View>
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Join Group</Text>
+          </Pressable>
+        </View>
       </View>
-      <View>
-        <TextInput
-          placeholder="Group Code"
-          onChangeText={(e) => setGroupCode(e)}
-          value={groupCode}
-          style={styles.input}
-          maxLength={6}
-        />
-      </View>
-      <View>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Join Group</Text>
-        </Pressable>
-      </View>
-    </View>
+    </LinearGradient>
   );
 }
 const styles = StyleSheet.create({

@@ -1,5 +1,5 @@
 import { Link, router } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Image,
   KeyboardAvoidingView,
@@ -12,18 +12,31 @@ import {
   View,
   Dimensions,
   useWindowDimensions,
+  Animated,
 } from "react-native";
+
 import { useFonts } from "expo-font";
 import * as Font from "expo-font";
+
 function FirstScreen() {
   const { height, width, scale, fontScale } = useWindowDimensions();
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+
   const windowWidth = width;
   const windowHeight = height;
   const ratio = windowWidth / 663; //663 is actual image width
   const onChangeText = (e) => {};
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000, // You can adjust the duration as needed
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
   return (
     <ScrollView>
       <View
@@ -54,6 +67,30 @@ function FirstScreen() {
               transition={1000}
             />
           </View>
+          {/* <View>
+            <Animated.Text
+              style={{
+                opacity: fadeAnim,
+                fontSize: 34,
+                fontWeight: "500",
+                textAlign: "center",
+                color: "#303030",
+              }}
+            >
+              Paredaar hai Saath
+            </Animated.Text>
+            <Animated.Text
+              style={{
+                opacity: fadeAnim,
+                fontSize: 34,
+                fontWeight: "500",
+                textAlign: "center",
+                color: "#303030",
+              }}
+            >
+              Tho darne ki kya baath
+            </Animated.Text>
+          </View> */}
           <View>
             <Text
               style={{
@@ -78,24 +115,36 @@ function FirstScreen() {
           </View>
           <View
             style={{
-              gap: 5,
+              gap: 15,
               justifyContent: "center",
             }}
           >
-            <Pressable
-              style={styles.buttonLogin}
-              onPress={() => router.push("/login/")}
+            <Animated.View
+              style={{
+                opacity: fadeAnim,
+              }}
             >
-              <Text style={[styles.buttonText]}>LOGIN</Text>
-            </Pressable>
-            <Pressable
-              style={styles.buttonSignUp}
-              onPress={() => router.push("/signup/")}
+              <Pressable
+                style={styles.buttonLogin}
+                onPress={() => router.push("/login/")}
+              >
+                <Text style={[styles.buttonText]}>LOGIN</Text>
+              </Pressable>
+            </Animated.View>
+            <Animated.View
+              style={{
+                opacity: fadeAnim,
+              }}
             >
-              <Text style={[styles.buttonText, { color: "white" }]}>
-                SIGN UP
-              </Text>
-            </Pressable>
+              <Pressable
+                style={styles.buttonSignUp}
+                onPress={() => router.push("/signup/")}
+              >
+                <Text style={[styles.buttonText, { color: "white" }]}>
+                  SIGN UP
+                </Text>
+              </Pressable>
+            </Animated.View>
           </View>
         </View>
       </View>
