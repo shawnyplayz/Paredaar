@@ -17,9 +17,7 @@ function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const windowWidth = width;
-  console.log("windowWidth", windowWidth);
   const windowHeight = height;
-  console.log("windowHeight", windowHeight);
   const ratio = windowWidth / 663; //663 is actual image width
   const onChangeText = (e) => {};
   return (
