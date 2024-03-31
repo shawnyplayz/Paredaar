@@ -25,49 +25,9 @@ function TabsLayout(props) {
       }}
     >
       <Tabs.Screen
-        name="joinGroup/index"
-        options={{
-          headerTitle: "Join Group",
-          // tabBarIcon: ({ color, size }) => (
-          //   <AntDesign name="adduser" color={color} size={34} />
-          // ),
-          tabBarButton: (props) => (
-            <CustomTabBarButton
-              title="Join group"
-              iconName="person-add"
-              icon={<AntDesign name="adduser" color="blue" size={40} />}
-              {...props}
-            />
-          ),
-          // tabBarLabel: "Join Group",
-        }}
-      />
-      <Tabs.Screen
-        name="sos/index"
-        options={{
-          headerTitle: "Home",
-          // tabBarIcon: ({ color, size }) => (
-          //   <Entypo name="home" color={color} size={40} />
-          // ),
-          tabBarButton: (props) => (
-            <CustomTabBarButton
-              title="Home"
-              iconName="home"
-              icon={<Entypo name="home" color="blue" size={40} />}
-              {...props}
-            />
-          ),
-          // tabBarLabel: "Dashboard",
-        }}
-      />
-
-      <Tabs.Screen
         name="createGroup/index"
         options={{
           headerTitle: "Create Group",
-          // tabBarIcon: ({ color, size }) => (
-          //   <FontAwesome name="group" color={color} size={30} />
-          // ),
           tabBarButton: (props) => (
             <CustomTabBarButton
               title="Create Group"
@@ -76,7 +36,34 @@ function TabsLayout(props) {
               {...props}
             />
           ),
-          // tabBarLabel: "Join Group",
+        }}
+      />
+      <Tabs.Screen
+        name="sos/index"
+        options={{
+          headerTitle: "Home",
+          tabBarButton: (props) => (
+            <CustomTabBarButton
+              title="Home"
+              iconName="home"
+              icon={<Entypo name="home" color="blue" size={40} />}
+              {...props}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="joinGroup/index"
+        options={{
+          headerTitle: "Join Group",
+          tabBarButton: (props) => (
+            <CustomTabBarButton
+              title="Join group"
+              iconName="person-add"
+              icon={<AntDesign name="adduser" color="blue" size={40} />}
+              {...props}
+            />
+          ),
         }}
       />
     </Tabs>

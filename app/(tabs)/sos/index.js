@@ -76,7 +76,7 @@ class SOS extends Component {
   };
   render() {
     return (
-      <LinearGradient colors={["#ffce9f", "#ff849c"]} style={{ flex: 1 }}>
+      <LinearGradient colors={["#d56787", "#ff849c"]} style={{ flex: 1 }}>
         <ScrollView style={{ backgroundColor: "transparent" }}>
           <View style={{ flex: 1 }}>
             <View
@@ -130,6 +130,7 @@ class SOS extends Component {
                 <Pressable
                   style={styles.buttonCreateGrp}
                   disabled={this.state.disableOtherButtons}
+                  onPress={() => router.push("/createGroup/")}
                 >
                   <Text style={styles.groupButtons}>Create Group</Text>
                 </Pressable>
